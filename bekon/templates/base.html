@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Bekon{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <!-- header -->
+  {% block header %}
+  <header>
+    <div class="header d-flex justify-content-between">
+      <a href="/" id="logo" class="d-flex align-items-center mx-4">BEKON</a>
+      <nav class="navbar mx-4">
+        <ul class="navbar-menu d-flex">
+          <li class="navbar-item mx-4"><a href="/account/register">регистрация</a></li>
+          <li class="navbar-item mx-4"><a href="/account/login">авторизация</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  {% endblock %}
+
+  <!-- main -->
+  {% block main %}{% endblock %}
+
+  <!-- footer -->
+  {% block footer %}
+  <footer>
+    <div class="row footer">
+      <div class="col">
+        <div class="d-flex flex-column">
+          <div class="footer-title">Bekon</div>
+          <p class="footer-text">
+            Социальная сеть для программистов.
+            Это мой первый сайт, но это не значит, что я о нем забуду. 
+            Пока я набираюсь знаний, чтобы реализовать то, как я это вижу
+          </p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex flex-column align-items-center">
+          <div class="footer-title">Автор</div>
+          <ul class="footer-list">
+            <li class="footer-item"><a href="#">github</a></li>
+            <li class="footer-item"><a href="#">telegram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-label"><a href="#">By Koichi-hub</a></div>
+  </footer>
+  {% endblock %}
+</body>
+</html>

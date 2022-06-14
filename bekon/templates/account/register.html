@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock %}
+{% block main %}
+<main>
+    <div class="main">
+        <div class="register">
+            <div class="transparent-bg"></div>
+            <div class="register-title">регистрация</div>
+            <form class="register-form" method="POST" action=".">
+                <input class="register-field" type="text" placeholder="username" />
+                <input class="register-field" type="password" placeholder="password">
+                <input class="register-field" type="password" placeholder="password repeat">
+                <button class="register-button" type="submit">зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

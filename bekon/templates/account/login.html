@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+{% block main %}
+<main>
+    <div class="main">
+        <div class="login">
+            <div class="transparent-bg"></div>
+            <div class="login-title">авторизация</div>
+            <form class="login-form" method="POST" action=".">
+                <input class="login-field" type="text" placeholder="username" />
+                <input class="login-field" type="password" placeholder="password">
+                <button class="login-button" type="submit">войти</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
