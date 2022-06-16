@@ -53,7 +53,6 @@ main {
     flex-flow: column;
     position: relative;
     width: 576px;
-    height: 324px;
     z-index: 1;
 }
 .register-title {
@@ -82,8 +81,12 @@ main {
     align-items: center;
     justify-content: center;
     height: 100%;
+    padding: 20px;
 }
-.register-field {
+.register-form > label, .register-form > span {
+    display: none;
+}
+.register-form > input {
     width: 240px;
     padding: 0;
     margin-bottom: 15px;
@@ -94,6 +97,17 @@ main {
     border: none;
     border-radius: 5px;
     font-size: 20px;
+}
+
+.register_done {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.register_done > p {
+    font-size: 24px;
 }
 
 .login {
