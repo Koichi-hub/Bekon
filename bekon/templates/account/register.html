@@ -10,13 +10,13 @@
 {% block main %}
 <main>
     <div class="main">
-        <div class="register">
+        <div class="popup">
             <div class="transparent-bg"></div>
-            <div class="register-title">регистрация</div>
-            <form class="register-form" method="POST" action=".">
+            <div class="form-title">регистрация</div>
+            <form class="form" method="POST" action=".">
                 {{ register_form }}
                 {% csrf_token %}
-                <button class="register-button" type="submit">зарегистрироваться</button>
+                <button class="form-button" type="submit">зарегистрироваться</button>
             </form>
         </div>
     </div>

@@ -28,6 +28,93 @@ header {
   font-size: 24px;
 }
 
+.menu-btn {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  z-index: 1;
+}
+.btn-line {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: white;
+  top: 20px;
+  transition: .3s;
+}
+.btn-line::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: white;
+  top: -16px;
+  transition: .3s;
+}
+.btn-line::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: white;
+  bottom: 0;
+  top: 16px;
+  transition: .3s;
+}
+.menu-btn_pressed > .btn-line {
+    transform: rotate(45deg);
+}
+.menu-btn_pressed > .btn-line::before {
+    transform: translate(0, 16px) rotate(90deg);
+}
+.menu-btn_pressed > .btn-line::after {
+    transform: translate(0, -16px);
+}
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 552px;
+    min-height: 100%;
+    transition: .3s;
+    transform: translate(100%);
+    display: flex;
+    flex-flow: column;
+}
+.side-menu_active {
+    transform: translate(0);
+}
+.transparent-side-menu {
+    border-radius: 0 !important;
+    background: #2c3e50 !important;
+}
+.menu-title {
+    font-size: 32px;
+    background: #2980b9;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.menu-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+}
+.menu-item > a {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    padding: 20px;
+    display: flex;
+    border: 3px solid transparent;
+}
+.menu-item:hover > a {
+    border: 3px solid white;
+}
+
 /* Main */
 main {
   min-height: 100%;
@@ -48,14 +135,14 @@ main {
   color: #34495E;
 }
 
-.register {
+.popup {
     display: flex;
     flex-flow: column;
     position: relative;
     width: 576px;
     z-index: 1;
 }
-.register-title {
+.form-title {
     width: 100%;
     height: 70px;
     display: flex;
@@ -66,7 +153,7 @@ main {
     font-size: 32px;
     border-radius: 15px 15px 0px 0px;
 }
-.register-button {
+.form-button {
     width: 180px;
     height: 45px;
     background-color: #2ECC71;
@@ -75,7 +162,7 @@ main {
     border: none;
     border-radius: 5px;
 }
-.register-form {
+.form {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -83,10 +170,10 @@ main {
     height: 100%;
     padding: 20px;
 }
-.register-form > label, .register-form > span {
+.form > label, .form > span {
     display: none;
 }
-.register-form > input {
+.form > input {
     width: 240px;
     padding: 0;
     margin-bottom: 15px;
@@ -105,57 +192,8 @@ main {
     align-items: center;
     padding: 20px;
 }
-
 .register_done > p {
     font-size: 24px;
-}
-
-.login {
-    display: flex;
-    flex-flow: column;
-    position: relative;
-    width: 576px;
-    height: 324px;
-    z-index: 1;
-}
-.login-title {
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3498DB;
-    color: white;
-    font-size: 32px;
-    border-radius: 15px 15px 0px 0px;
-}
-.login-button {
-    width: 180px;
-    height: 45px;
-    background-color: #2ECC71;
-    font-size: 16px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-.login-form {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-.login-field {
-    width: 240px;
-    padding: 0;
-    margin-bottom: 15px;
-    background: #2C3E50;
-    color: white;
-    text-align: center;
-    line-height: 50px;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
 }
 
 .transparent-bg {
@@ -166,6 +204,49 @@ main {
     opacity: .8;
     z-index: -1;
     border-radius: 15px;
+}
+
+.account-main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: normal;
+    background: url(/static/images/shape1.svg) no-repeat, url(/static/images/shape2.svg) no-repeat, url(/static/images/shape3.svg) no-repeat, #1ABC9C;
+    background-position: bottom 400px left -42px, bottom left 100px, bottom 100px right;
+    position: relative;
+}
+.account {
+    margin-top: 15px;
+    width: 60%;
+    max-width: 1152px;
+    height: 800px;
+    background: #ECF0F1;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    z-index: 1;
+}
+.account-pl {
+    padding: 10px;
+    margin: 0px;
+    display: grid;
+    flex-grow: 1;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.pl-item {
+    font-size: 32px;
+    text-align: center;
+}
+.account-links {
+    padding: 0px;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.links-item {
+    font-size: 32px;
+    text-align: center;
 }
 
 /* Footer */

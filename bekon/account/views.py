@@ -1,6 +1,8 @@
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import LoginForm, RegistrationForm
 
 
@@ -27,7 +29,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     auth.login(request, user)
-                    return HttpResponse('Authenticated successfully')
+                    return render(request, 'account/index.html', {'user': user})
                 else:
                     return HttpResponse('Disabled account')
             else:
@@ -35,3 +37,10 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
+
+
+@login_required
+def account(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+
+    return render(request, 'account/index.html', {'user': user})
