@@ -13,6 +13,9 @@
         <div class="popup">
             <div class="transparent-bg"></div>
             <div class="form-title">авторизация</div>
+            {% if error %}
+            <div style="font-size: 20px;display: flex;justify-content: center;line-height: 50px;">Неверный логин или пароль.</div>
+            {% endif %}
             <form class="form" method="POST" action=".">
                 {{ form }}
                 {% csrf_token %}

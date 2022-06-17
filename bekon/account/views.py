@@ -1,8 +1,8 @@
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect
+
 from .forms import LoginForm, RegistrationForm
 
 
@@ -29,18 +29,28 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     auth.login(request, user)
-                    return render(request, 'account/index.html', {'user': user})
+                    return redirect('account', user_id=user.id)
                 else:
-                    return HttpResponse('Disabled account')
+                    return render(request, 'account/error.html', {'text': 'аккаунт не активен... :('})
             else:
-                return HttpResponse('Invalid login')
+                form = LoginForm()
+                return render(request, 'account/login.html', {'form': form, 'error': True})
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
 
 
-@login_required
-def account(request, user_id):
-    user = get_object_or_404(User, pk=user_id)
+def logout(request):
+    auth.logout(request)
+    return redirect('home')
 
+
+def account(request, user_id):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    user = None
+    try:
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        pass
     return render(request, 'account/index.html', {'user': user})

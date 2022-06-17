@@ -245,8 +245,15 @@ main {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .links-item {
+    text-align: center
+}
+.links-item > a {
     font-size: 32px;
-    text-align: center;
+    color: var(--bs-body-color);
+    transition: .2s;
+}
+.links-item > a:hover {
+    color: #3498DB;
 }
 
 /* Footer */

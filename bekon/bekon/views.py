@@ -1,6 +1,7 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def index(request):
-    return HttpResponse(render(request=request, template_name='index.html'))
+    if request.user.is_authenticated:
+        return redirect('account', user_id=request.user.id)
+    return render(request=request, template_name='index.html')
