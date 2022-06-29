@@ -26,3 +26,6 @@ SQL_PORT=5432
 ```
 - `docker-compose -f docker-compose.dev.yml up -d --build`
 - переходим на http://localhost:8000/
+
+## Мой авторский дизайн
+[Figma](https://www.figma.com/file/yXeQBq60ZjMhAuqwagJVo9/Bekon)
