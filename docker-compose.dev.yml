@@ -26,5 +26,4 @@ services:
       - ./.env
 volumes:
   db_volume:
-    name: bekon_db_volume_dev
     driver: local
