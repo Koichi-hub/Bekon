@@ -1,7 +1,7 @@
 # bekon
 media/
 .idea/
-server_static/
+.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

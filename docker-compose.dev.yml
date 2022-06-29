@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    container_name: bekon_db_dev
+    environment:
+      - POSTGRES_USER=bekon
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=bekon
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  app:
+    build: .
+    container_name: bekon_app_dev
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/home/app/bekon
+    env_file:
+      - ./.env
+volumes:
+  db_volume:
+    name: bekon_db_volume_dev
+    driver: local

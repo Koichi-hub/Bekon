@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  nginx:
+    container_name: bekon_server
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - app
+    volumes:
+      - static_volume:/home/app/bekon/staticfiles
+  app:
+    build: .
+    container_name: bekon_app
+    command: gunicorn bekon.wsgi:application --bind 0.0.0.0:8000
+    expose:
+      - 8000
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    volumes:
+      - static_volume:/home/app/bekon/staticfiles
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    container_name: bekon_db
+    environment:
+      - POSTGRES_USER=bekon
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=bekon
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  db_volume:
+    driver: local
+  static_volume:
+
