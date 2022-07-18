@@ -14,6 +14,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   app:
     build: .
+    restart: always
     container_name: bekon_app_dev
     command: python manage.py runserver 0.0.0.0:8000
     ports:
@@ -21,9 +22,10 @@ services:
     depends_on:
       - db
     volumes:
-      - .:/home/app/bekon
+      - static_volume:/home/app/bekon
     env_file:
       - ./.env
 volumes:
   db_volume:
     driver: local
+  static_volume:

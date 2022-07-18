@@ -3,14 +3,16 @@ services:
   nginx:
     container_name: bekon_server
     build: ./nginx
+    restart: always
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - app
     volumes:
       - static_volume:/home/app/bekon/staticfiles
   app:
     build: .
+    restart: always
     container_name: bekon_app
     command: gunicorn bekon.wsgi:application --bind 0.0.0.0:8000
     expose:
